@@ -16,8 +16,10 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import AuthScreen from './AuthScreen';
+import { PINScreen } from './PINScreen';
+import { ProfileScreen } from './ProfileScreen';
 
-function App(): React.JSX.Element {
+function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -31,7 +33,7 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <AuthScreen/>
+      <ProfileScreen/>
     </SafeAreaView>
   );
 }
