@@ -1,13 +1,28 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
+import React, { useEffect } from 'react';
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from './constants';
-import Facebook from "./assets/icons/Facebook.png"
-import instagram from "./assets/icons/instagram.png"
-import share from "./assets/icons/share.png"
+import Facebook from './assets/icons/Facebook.png';
+import instagram from './assets/icons/instagram.png';
+import share from './assets/icons/share.png';
+import up from './assets/icons/up.png';
+import down from './assets/icons/down.png';
+import check from './assets/icons/check-circle.png';
+import bell from './assets/icons/bell.png';
+import settings from './assets/icons/settings.png';
+import { useNavigation } from '@react-navigation/native';
+
+const Title = () => (
+    <View style={styles.row}>
+        <Image source={check} style={styles.checkIcon} resizeMode="contain" />
+        <Text style={styles.titleText}>Profile</Text>
+    </View>
+)
 
 export const ProfileScreen = () => {
+    const navigation = useNavigation()
+
   return (
-    <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
           <View style={styles.main}>
               <Image source={require('./assets/images/avatar.png')} style={styles.image} resizeMode="cover" />
               <Text style={styles.title}>Горохов Андрей Николаевич</Text>
@@ -21,24 +36,30 @@ export const ProfileScreen = () => {
               </Text>
               <Text style={styles.showMore}>Read more</Text>
               <View style={styles.socials}>
-                <Image source={share} style={styles.socialIcon} resizeMode='contain' />
-                <Image source={Facebook} style={styles.socialIcon} resizeMode='contain' />
-                <Image source={instagram} style={styles.socialIcon} resizeMode='contain' />
+                <Image source={share} style={styles.socialIcon} resizeMode="contain" />
+                <Image source={Facebook} style={styles.socialIcon} resizeMode="contain" />
+                <Image source={instagram} style={styles.socialIcon} resizeMode="contain" />
               </View>
           </View>
           <View style={styles.money}>
               <View style={styles.moneyLeftItem}>
-                  <Text style={styles.moneyThinText}>Your balance</Text>
+                  <Text style={styles.moneyThinText}>Balance</Text>
                   <Text style={styles.moneyBigText}>$0</Text>
-                  <Text style={styles.moneyThickText}>Пополнить</Text>
+                  <View style={styles.row}>
+                      <Image source={up} style={styles.moneyIcon} resizeMode="contain" />
+                      <Text style={styles.moneyThickText}>Пополнить</Text>
+                  </View>
               </View>
               <View style={styles.moneyRightItem}>
-                <Text style={[styles.moneyThinText, styles.inActiveText]}>Your balance</Text>
+                <Text style={[styles.moneyThinText, styles.inActiveText]}>Profit</Text>
                 <Text style={[styles.moneyBigText, styles.inActiveText]}>$0</Text>
-                <Text style={[styles.moneyThickText, styles.inActiveText]}>Пополнить</Text>
+                <View style={styles.row}>
+                    <Image source={down} style={styles.moneyIcon} resizeMode="contain" />
+                      <Text style={[styles.moneyThickText, styles.inActiveText]}>Вывести</Text>
+                </View>
               </View>
           </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -81,7 +102,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: SCREEN_WIDTH * 0.05,
         paddingVertical: SCREEN_HEIGHT * 0.005,
         backgroundColor: '#fff',
-        borderRadius: SCREEN_WIDTH * 0.05
+        borderRadius: SCREEN_WIDTH * 0.05,
     },
     creditsIcon: {
         width: SCREEN_WIDTH * 0.05,
@@ -106,7 +127,7 @@ const styles = StyleSheet.create({
         marginBottom: SCREEN_HEIGHT * 0.02,
     },
     socials: {
-        width: "100%",
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -146,5 +167,22 @@ const styles = StyleSheet.create({
     },
     moneyRightItem: {
         alignItems: 'flex-end',
+    },
+    row: {
+        flexDirection: 'row',
+    },
+    moneyIcon: {
+        width: SCREEN_WIDTH * 0.05,
+        height: SCREEN_WIDTH * 0.05,
+        marginRight: SCREEN_WIDTH * 0.02,
+    },
+    checkIcon: {
+        width: SCREEN_WIDTH * 0.08,
+        height: SCREEN_WIDTH * 0.08,
+    },
+    titleText: {
+        fontSize: SCREEN_WIDTH * 0.05,
+        fontWeight: '600',
+        color: '#fff',
     }
 });

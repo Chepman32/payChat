@@ -2,11 +2,13 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from './constants';
+import { useNavigation } from '@react-navigation/native';
 
 const AuthInput = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Search")} >
         <Image source={require('./assets/icons/login.png')} style={styles.icon} />
       </TouchableOpacity>
 
