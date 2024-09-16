@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from './constants';
+import { useNavigation } from '@react-navigation/native';
 
 const OTPInputComponent = () => {
   const [otp, setOtp] = useState(['', '', '', '']);
-  const [timer, setTimer] = useState(60); // 60 seconds countdown
+  const [timer, setTimer] = useState(60);
+  const navigation = useNavigation()
   const inputRefs = useRef([]);
+  useEffect(() => {
+    if (otp[otp.length - 1]) {
+      navigation.navigate("ProfileScreen")
+    }
+  }, [navigation, otp])
 
-  // Handle the countdown timer logic
   useEffect(() => {
     if (timer > 0) {
       const interval = setInterval(() => {

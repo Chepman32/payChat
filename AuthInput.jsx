@@ -8,7 +8,7 @@ const AuthInput = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Search")} >
+      <TouchableOpacity onPress={() => navigation.navigate("PINScreen")} >
         <Image source={require('./assets/icons/login.png')} style={styles.icon} />
       </TouchableOpacity>
 

@@ -10,6 +10,18 @@ import chat from "./assets/icons/chat.png";
 import user from "./assets/icons/user.png";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from './constants';
 import { WelcomeScreen } from './WelcomeScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const SearchStack = createStackNavigator()
+
+const SearchNavigator = () => (
+  <SearchStack.Navigator>
+    <SearchStack.Screen name='Auth' component={AuthScreen} />
+    <SearchStack.Screen name='PINScreen' component={PINScreen} />
+    <SearchStack.Screen name='WelcomeScreen' component={WelcomeScreen} />
+  </SearchStack.Navigator>
+  
+)
 
 const Tab = createBottomTabNavigator();
 
@@ -70,10 +82,9 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Tab.Screen name="Search" component={WelcomeScreen} />
+          <Tab.Screen name="Search" component={SearchNavigator} />
           <Tab.Screen name="Chat" component={PINScreen} />
           <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
-          <Tab.Screen name="AuthScreen" component={AuthScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </>
