@@ -7807,6 +7807,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.2
     react-native-gesture-handler: ^2.19.0
+    react-native-onboarding-swiper: ^1.3.0
     react-native-safe-area-context: ^4.11.0
     react-native-screens: ^3.34.0
     react-test-renderer: 18.3.1
@@ -8068,6 +8069,19 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: ce9b9fc6537debf962e6b8d84f1c4cf18fe00f39bd86498e84a203ebb26bf3543c2642ed247d974537840407b7ddb602939fd8c817c00a3416e87bddc8f2088f
+  languageName: node
+  linkType: hard
+
+"react-native-onboarding-swiper@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "react-native-onboarding-swiper@npm:1.3.0"
+  dependencies:
+    tinycolor2: ^1.4.1
+  peerDependencies:
+    prop-types: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 9433972655438473c52524d955716198f5c8152139feb300eff6b37234525c275a189aabaef8d6d52aa56f2e6cc20fa0e0f6a0ee76624ab0a203410abeac2694
   languageName: node
   linkType: hard
 
@@ -9178,6 +9192,13 @@ __metadata:
     readable-stream: ~2.3.6
     xtend: ~4.0.1
   checksum: beb0f338aa2931e5660ec7bf3ad949e6d2e068c31f4737b9525e5201b824ac40cac6a337224856b56bd1ddd866334bbfb92a9f57cd6f66bc3f18d3d86fc0fe50
+  languageName: node
+  linkType: hard
+
+"tinycolor2@npm:^1.4.1":
+  version: 1.6.0
+  resolution: "tinycolor2@npm:1.6.0"
+  checksum: 6df4d07fceeedc0a878d7bac47e2cd47c1ceeb1078340a9eb8a295bc0651e17c750f73d47b3028d829f30b85c15e0572c0fd4142083e4c21a30a597e47f47230
   languageName: node
   linkType: hard
 

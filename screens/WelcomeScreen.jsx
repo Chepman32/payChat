@@ -1,23 +1,32 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from './constants'
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../constants'
+import { useNavigation } from '@react-navigation/native'
+import b1 from "../assets/images/b1.png"
+import b2 from "../assets/images/b2.png"
 
 export const WelcomeScreen = () => {
+  const navigation = useNavigation()
+
   return (
     <View style={styles.container}>
-      <Image source={require('./assets/big_logo.png')} style={styles.image} resizeMode='contain' />
+      <Image source={require('../assets/images/big_logo.png')} style={styles.image} resizeMode='contain' />
       <Text style={styles.mainText}>
         Вы хотите задать вопрос или заработать на ответе?
       </Text>
-      <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")} style={styles.buttonContainer}>
         <View style={styles.blueButton}>
           <Text style={styles.blueButtonText}>Задать вопрос</Text>
         </View>
         <View style={styles.whiteButton}>
           <Text style={styles.whiteButtonText}>Заработать</Text>
         </View>
-          </View>
-          <Text style={styles.enter}>Войти</Text>
+          </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
+      <Text style={styles.enter}>Войти</Text>
+      </TouchableOpacity>
+      <Image source={b1} style={styles.b1} resizeMode='contain' />
+      <Image source={b2} style={styles.b2} resizeMode='contain' />
     </View>
   )
 }
@@ -25,12 +34,13 @@ export const WelcomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
+    width: "100%",
+    height: "100%",
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: SCREEN_HEIGHT * 0.1,
+    position: 'relative',
   },
   image: {
     width: SCREEN_WIDTH * 0.5,
@@ -40,7 +50,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH * 0.8,
     marginTop: SCREEN_HEIGHT * 0.05,
     textAlign: 'center',
-    fontSize: SCREEN_WIDTH * 0.05,
+    fontSize: SCREEN_WIDTH * 0.07,
     fontWeight: '600',
     color: '#111828',
   },
@@ -82,5 +92,20 @@ const styles = StyleSheet.create({
         fontSize: SCREEN_WIDTH * 0.05,
         fontWeight: '600',
         color: '#369FB5',
-  }
+  },
+  b1: {
+    position: 'absolute',
+    top: SCREEN_HEIGHT * -0.15,
+    left: 0,
+    width: SCREEN_WIDTH * 0.5,
+    height: SCREEN_HEIGHT * 0.5,
+  },
+  b2: {
+    position: 'absolute',
+    bottom: SCREEN_HEIGHT * 0.2,
+    right: SCREEN_WIDTH * -0.1,
+    zIndex: -1,
+    width: SCREEN_WIDTH * 0.5,
+    height: SCREEN_HEIGHT * 0.5,
+  },
 })

@@ -10,7 +10,7 @@ const OTPInputComponent = () => {
   const inputRefs = useRef([]);
   useEffect(() => {
     if (otp[otp.length - 1]) {
-      navigation.navigate("ProfileScreen")
+      navigation.navigate("WelcomeScreen")
     }
   }, [navigation, otp])
 

@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from './constants'
-import AuthInput from './AuthInput'
-import Facebook from "./assets/icons/Facebook.png"
-import instagram from "./assets/icons/instagram.png"
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../constants'
+import AuthInput from '../AuthInput'
+import Facebook from "../assets/icons/Facebook.png"
+import instagram from "../assets/icons/instagram.png"
 
 export default function AuthScreen() {
   return (
     <View style={styles.container}>
-          <Image source={require('./assets/big_logo.png')} style={styles.image} resizeMode='contain' />
+          <Image source={require('../assets/images/big_logo.png')} style={styles.image} resizeMode='contain' />
           <Text style={styles.mainText}>Login by email or phone</Text>
           <AuthInput />
           <Text style={styles.grayText}>Use it to log in with the help of</Text>

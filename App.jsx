@@ -1,27 +1,59 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import AuthScreen from './AuthScreen';
-import { PINScreen } from './PINScreen';
+import { NavigationContainer, useRoute, useNavigationState } from '@react-navigation/native';
+import AuthScreen from './screens/AuthScreen';
+import { PINScreen } from './screens/PINScreen';
 import { ProfileScreen } from './ProfileScreen';
 import search from "./assets/icons/search.png";
 import chat from "./assets/icons/chat.png";
 import user from "./assets/icons/user.png";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from './constants';
-import { WelcomeScreen } from './WelcomeScreen';
+import { WelcomeScreen } from './screens/WelcomeScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import OnboardingScreen from './screens/OnboardingScreen';
+import { Search } from './screens/Search';
 
-const SearchStack = createStackNavigator()
+const SearchStack = createStackNavigator();
 
-const SearchNavigator = () => (
-  <SearchStack.Navigator>
-    <SearchStack.Screen name='Auth' component={AuthScreen} />
-    <SearchStack.Screen name='PINScreen' component={PINScreen} />
-    <SearchStack.Screen name='WelcomeScreen' component={WelcomeScreen} />
-  </SearchStack.Navigator>
+const SearchNavigator = () => {
+  const navigationState = useNavigationState((state) => state);
   
-)
+  useEffect(() => {
+    const currentRouteName = navigationState.routes[navigationState.index]?.name;
+    console.log('Active screen in SearchNavigator:', currentRouteName);
+  }, [navigationState]);
+
+  return (
+    <SearchStack.Navigator initialRouteName='SearchScreen'>
+      <SearchStack.Screen 
+        name='SearchScreen' 
+        component={Search} 
+        options={{ headerLeft: () => null, title:"Search" }}
+      />
+      <SearchStack.Screen 
+        name='Auth' 
+        component={AuthScreen} 
+        options={{ headerLeft: () => null }}
+      />
+      <SearchStack.Screen 
+        name='OnboardingScreen' 
+        component={OnboardingScreen}  
+        options={{ headerShown: false }}
+      />
+      <SearchStack.Screen 
+        name='PINScreen' 
+        component={PINScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <SearchStack.Screen 
+        name='WelcomeScreen'
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+    </SearchStack.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -29,10 +61,10 @@ const CustomTabBar = ({ state, navigation }) => {
   const currentRoute = state.routes[state.index].name;
 
   useEffect(() => {
-    console.log('Current route name:', currentRoute);
-  }, [currentRoute, state.index, state.routes]);
+    console.log('Current state:', state);
+  }, [currentRoute, state, state.index, state.routes]);
 
-  const isTabBarVisible = !(currentRoute === 'AuthScreen' || currentRoute === 'PINScreen');
+  const isTabBarVisible = !(currentRoute === 'Search' || currentRoute === 'PINScreen' || currentRoute === 'OnboardingScreen' || currentRoute === 'WelcomeScreen');
 
   return isTabBarVisible ? (
     <View style={styles.tabBar}>

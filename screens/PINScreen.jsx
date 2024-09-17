@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from './constants'
-import OTPInputComponent from './OTPInputComponent'
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../constants'
+import OTPInputComponent from '../OTPInputComponent'
 
 export const PINScreen = () => {
   return (
     <View style={styles.container}>
-          <Image source={require('./assets/big_logo.png')} style={styles.image} resizeMode='contain' />
+          <Image source={require('../assets/images/big_logo.png')} style={styles.image} resizeMode='contain' />
           <OTPInputComponent />
     </View>
   )
