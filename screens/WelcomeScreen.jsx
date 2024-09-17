@@ -14,7 +14,7 @@ export const WelcomeScreen = () => {
       <Text style={styles.mainText}>
         Вы хотите задать вопрос или заработать на ответе?
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")} style={styles.buttonContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.buttonContainer}>
         <View style={styles.blueButton}>
           <Text style={styles.blueButtonText}>Задать вопрос</Text>
         </View>
@@ -22,7 +22,7 @@ export const WelcomeScreen = () => {
           <Text style={styles.whiteButtonText}>Заработать</Text>
         </View>
           </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
+      <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
       <Text style={styles.enter}>Войти</Text>
       </TouchableOpacity>
       <Image source={b1} style={styles.b1} resizeMode='contain' />

@@ -1,11 +1,13 @@
 import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, FlatList } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants'
+import { useNavigation } from '@react-navigation/native'
+import search_big from '../assets/icons/search_big.png'
 
 export const Search = () => {
     const [value, setValue] = React.useState('')
     const [filteredData, setFilteredData] = React.useState([])
-
+    const navigation = useNavigation()
     const data = [
         {
             id: 1,
@@ -60,12 +62,21 @@ export const Search = () => {
         >
             <SafeAreaView style={styles.container}>
                 <View style={styles.results}>
-                    <FlatList
-                        data={filteredData}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id.toString()}
-                        ListEmptyComponent={<Text style={styles.emptyMessage}>No results found</Text>}
-                    />
+                    {
+                        filteredData.length > 0 && value
+                            ? <FlatList
+                                data={filteredData}
+                                renderItem={renderItem}
+                                keyExtractor={(item) => item.id}
+                                style={styles.searchResults}
+                            />
+                            : (
+                                <View style={styles.noResultsContainer}>
+                                    <Image source={search_big} style={styles.emptySearchIcon} />
+                                    <Text style={styles.noResultsText}>You don't have any contacts, use the search</Text>
+                                </View>
+                            )
+                    }
                 </View>
                 <View style={styles.inputContainer}>
                     <Image source={require('../assets/icons/search.png')} style={styles.searchIcon} />
@@ -173,4 +184,20 @@ const styles = StyleSheet.create({
         fontSize: SCREEN_WIDTH * 0.045,
         color: '#9EA1A8',
     },
+    noResultsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptySearchIcon: {
+        width: SCREEN_WIDTH * 0.2,
+        height: SCREEN_WIDTH * 0.2,
+        marginTop: SCREEN_HEIGHT * 0.1,
+    },
+    noResultsText: {
+        marginTop: SCREEN_HEIGHT * 0.02,
+        fontSize: SCREEN_WIDTH * 0.05,
+        fontWeight: '400',
+        color: '#111828',
+    }
 })

@@ -13,6 +13,7 @@ import { WelcomeScreen } from './screens/WelcomeScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from './screens/OnboardingScreen';
 import { Search } from './screens/Search';
+import { StatusHeader } from './components/StatusHeader';
 
 const SearchStack = createStackNavigator();
 
@@ -25,11 +26,11 @@ const SearchNavigator = () => {
   }, [navigationState]);
 
   return (
-    <SearchStack.Navigator initialRouteName='SearchScreen'>
+    <SearchStack.Navigator initialRouteName='Auth'>
       <SearchStack.Screen 
         name='SearchScreen' 
         component={Search} 
-        options={{ headerLeft: () => null, title:"Search" }}
+        options={{ title:"Search", headerTitle: (props) => <StatusHeader {...props} />, headerLeft: () => null }}
       />
       <SearchStack.Screen 
         name='Auth' 
