@@ -14,6 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from './screens/OnboardingScreen';
 import { Search } from './screens/Search';
 import { StatusHeader } from './components/StatusHeader';
+import MentorList from './screens/Mentors';
 
 const SearchStack = createStackNavigator();
 
@@ -26,12 +27,7 @@ const SearchNavigator = () => {
   }, [navigationState]);
 
   return (
-    <SearchStack.Navigator initialRouteName='Auth'>
-      <SearchStack.Screen 
-        name='SearchScreen' 
-        component={Search} 
-        options={{ title:"Search", headerTitle: (props) => <StatusHeader {...props} />, headerLeft: () => null }}
-      />
+    <SearchStack.Navigator initialRouteName='Mentors'>
       <SearchStack.Screen 
         name='Auth' 
         component={AuthScreen} 
@@ -56,6 +52,20 @@ const SearchNavigator = () => {
   );
 }
 
+const ChatsStack = createStackNavigator();
+
+const ChatsNavigator = () => {
+  return (
+    <ChatsStack.Navigator>
+      <ChatsStack.Screen
+        name='Mentors'
+        component={MentorList} 
+        options={{ title: "Mentors", headerTitle: (props) => <StatusHeader leftValue={"1000$"} rightValue={5000} rightIcon={require("./assets/icons/search_grey.png")} />, headerLeft: () => null }}
+      />
+    </ChatsStack.Navigator>
+  )
+}
+
 const Tab = createBottomTabNavigator();
 
 const CustomTabBar = ({ state, navigation }) => {
@@ -65,7 +75,7 @@ const CustomTabBar = ({ state, navigation }) => {
     console.log('Current state:', state);
   }, [currentRoute, state, state.index, state.routes]);
 
-  const isTabBarVisible = !(currentRoute === 'Search' || currentRoute === 'PINScreen' || currentRoute === 'OnboardingScreen' || currentRoute === 'WelcomeScreen');
+  const isTabBarVisible = !(currentRoute === 'Auth' || currentRoute === 'PINScreen' || currentRoute === 'OnboardingScreen' || currentRoute === 'WelcomeScreen');
 
   return isTabBarVisible ? (
     <View style={styles.tabBar}>
@@ -81,6 +91,7 @@ const CustomTabBar = ({ state, navigation }) => {
               styles.tabItem,
               index === 1 && styles.middleTabContainer,
               isFocused && index !== 1 && styles.focusedTab,
+              isFocused && index === 1 && styles.middleFocusedTab,
             ]}
           >
             <View style={index === 1 ? styles.middleTab : styles.iconContainer}>
@@ -116,7 +127,7 @@ export default function App() {
           }}
         >
           <Tab.Screen name="Search" component={SearchNavigator} />
-          <Tab.Screen name="Chat" component={PINScreen} />
+          <Tab.Screen name="Chats" component={ChatsNavigator} />
           <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
         </Tab.Navigator>
       </NavigationContainer>
@@ -158,9 +169,9 @@ const styles = StyleSheet.create({
   },
   middleTab: {
     backgroundColor: '#FFFFFF',
-    borderRadius: SCREEN_WIDTH * 0.09,
-    width: SCREEN_WIDTH * 0.18,
-    height: SCREEN_WIDTH * 0.18,
+    borderRadius: SCREEN_WIDTH * 0.09, // ensures circular shape
+    width: SCREEN_WIDTH * 0.18, 
+    height: SCREEN_WIDTH * 0.18, // make sure width and height are the same for a circle
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -186,6 +197,14 @@ const styles = StyleSheet.create({
     tintColor: '#0F172A',
     width: SCREEN_WIDTH * 0.08,
     height: SCREEN_WIDTH * 0.08,
+  },
+  middleFocusedTab: {
+    backgroundColor: "#EA2D2D", 
+    borderRadius: SCREEN_WIDTH * 0.09, // ensure this matches middleTab's borderRadius for circular shape
+    width: SCREEN_WIDTH * 0.18, 
+    height: SCREEN_WIDTH * 0.18, // same width and height to maintain the circle
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   focusedIcon: {
     tintColor: '#FFFFFF',

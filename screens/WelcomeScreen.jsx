@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../constants'
 import { useNavigation } from '@react-navigation/native'
@@ -14,14 +14,14 @@ export const WelcomeScreen = () => {
       <Text style={styles.mainText}>
         Вы хотите задать вопрос или заработать на ответе?
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.buttonContainer}>
-        <View style={styles.blueButton}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('Chats', { screen: 'Mentors' })} style={styles.blueButton}>
           <Text style={styles.blueButtonText}>Задать вопрос</Text>
-        </View>
-        <View style={styles.whiteButton}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Chats', { screen: 'Mentors' })} style={styles.whiteButton}>
           <Text style={styles.whiteButtonText}>Заработать</Text>
-        </View>
-          </TouchableOpacity>
+        </TouchableOpacity>
+          </View>
       <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
       <Text style={styles.enter}>Войти</Text>
       </TouchableOpacity>

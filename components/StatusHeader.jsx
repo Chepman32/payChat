@@ -5,16 +5,16 @@ import settings from "../assets/icons/settings_black.png"
 import arrowUp from "../assets/icons/arrowUp.png"
 import { SCREEN_WIDTH } from '../constants'
 
-export const StatusHeader = () => {
+export const StatusHeader = ({leftValue, rightValue, ledtIcon, rightIcon}) => {
   return (
       <View style={styles.container}>
           <Image source={notifications} style={styles.icon} resizeMode='contain' />
           <View style={styles.row}>
-          <Text style={styles.blackText}>0</Text>
+          <Text style={styles.blackText}> {leftValue}</Text>
         <Image source={arrowUp} style={styles.centeredIcon} resizeMode='contain' />
-          <Text style={styles.blueText}>0</Text>
+          <Text style={styles.blueText}> {rightValue}</Text>
         </View>
-          <Image source={settings} style={styles.icon} resizeMode='contain' />
+          <Image source={rightIcon || settings} style={styles.icon} resizeMode='contain' />
     </View>
   )
 }
